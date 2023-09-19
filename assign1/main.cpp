@@ -1,3 +1,12 @@
+/*
+ * Author: Branden Holloway
+ * Date: September 2023
+ *
+ * math.cpp
+ *
+ * Main file that performs tests of math operations
+ *
+ */
 #include <string>
 #include "mathTest.h"
 #include "math.h"
@@ -7,6 +16,9 @@ int main()
 {
 	MathTest tester;
 
+	/*
+	 * Decimal math operations tests
+	 */
 	std::cout << std::endl;
 	std::cout << "Decimal Math Tests" << std::endl;
 	std::cout << std::endl;
@@ -24,6 +36,12 @@ int main()
 	tester.decimalDivisionTest(1000, 10, 100);
 //	tester.decimalDivisionTest(1000, 0, 100);
 
+	tester.decimalPowerTest(5, 2, 25);
+	tester.decimalPowerTest(2, 3, 8);
+
+	/*
+	 * Binary math operations tests
+	 */
 	std::cout << std::endl;
 	std::cout << "Binary Math Tests" << std::endl;
 	std::cout << std::endl;
@@ -40,6 +58,9 @@ int main()
 	tester.binaryMultiplicationTest("1111", "1111", "11100001");
 	tester.binaryMultiplicationTest("1011", "1101", "10001111");
 
+	/*
+	 * Hexadeciaml math operations tests
+	 */
 	std::cout << std::endl;
 	std::cout << "Hex Math Tests" << std::endl;
 	std::cout << std::endl;
@@ -56,6 +77,10 @@ int main()
 	tester.hexDivisionTest("1c", "2", "e");
 	tester.hexDivisionTest("ff", "6", "2a");
 
+
+	/*
+	 * Octal math operations tests
+	 */
 	std::cout << std::endl;
 	std::cout << "Octal Math Tests" << std::endl;
 	std::cout << std::endl;

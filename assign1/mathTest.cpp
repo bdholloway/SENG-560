@@ -1,3 +1,13 @@
+/*
+ * Author: Branden Holloway
+ * Date: September 2023
+ *
+ * math.cpp
+ *
+ * mathTest implimentation file.
+ * Performs various mathmatical operations on varying number types.
+ *
+ */
 #include <iostream>
 #include <string>
 #include <cmath>
@@ -9,6 +19,12 @@
 /*
  * Decimal Math Operations
  */
+
+/**********************************************
+** Function: decimalAdditionTest()
+** Description: Takes two variables, and a result. Performs a math operation and checks answer for validity.
+** Params: double, double, double
+**********************************************/
 void MathTest::decimalAdditionTest(double var1, double var2, double result)
 {
 
@@ -26,6 +42,12 @@ void MathTest::decimalAdditionTest(double var1, double var2, double result)
 		std::cout << "\033[1;31m [Test Failed]\033[0m\n";
 	}
 }
+
+/**********************************************
+** Function: decimalSubtractionTest()
+** Description: Takes two variables, and a result. Performs a math operation and checks answer for validity.
+** Params: double, double, double
+**********************************************/
 void MathTest::decimalSubtractionTest(double var1, double var2, double result)
 {
 	double answer = subtraction<double>(var1, var2);
@@ -42,6 +64,12 @@ void MathTest::decimalSubtractionTest(double var1, double var2, double result)
 		std::cout << "\033[1;31m [Test Failed]\033[0m\n";
 	}
 }
+
+/**********************************************
+** Function: decimalMultiplicationTest()
+** Description: Takes two variables, and a result. Performs a math operation and checks answer for validity.
+** Params: double, double, double
+**********************************************/
 void MathTest::decimalMultiplicationTest(double var1, double var2, double result)
 {
 	double answer = multiplication<double>(var1, var2);
@@ -58,9 +86,36 @@ void MathTest::decimalMultiplicationTest(double var1, double var2, double result
 		std::cout << "\033[1;31m [Test Failed]\033[0m\n";
 	}
 }
+
+/**********************************************
+** Function: decimalDivisionTest()
+** Description: Takes two variables, and a result. Performs a math operation and checks answer for validity.
+** Params: double, double, double
+**********************************************/
 void MathTest::decimalDivisionTest(double var1, double var2, double result)
 {
 	double answer = division<double>(var1, var2);
+	float delta = .1;
+	std::cout << "Expected: " << result << " Actual: " << answer;
+
+	if((answer - result) < delta)
+	{
+		std::cout << "\033[1;32m [Test Passed]\033[0m\n";
+	}
+	else
+	{
+		std::cout << "\033[1;31m [Test Failed]\033[0m\n";
+	}
+}
+
+/**********************************************
+** Function: decimalDivisionTest()
+** Description: Takes two variables, and a result. Performs a math operation and checks answer for validity.
+** Params: double, double, double
+**********************************************/
+void MathTest::decimalPowerTest(double var1, double var2, double result)
+{
+	double answer = power<double>(var1, var2);
 	float delta = .1;
 	std::cout << "Expected: " << result << " Actual: " << answer;
 
@@ -78,6 +133,11 @@ void MathTest::decimalDivisionTest(double var1, double var2, double result)
  * Binary Math Operations
  */
 
+/**********************************************
+** Function: binaryAdditionTest()
+** Description: Takes two variables, and a result. Performs a math operation and checks answer for validity.
+** Params: string, string, string
+**********************************************/
 void MathTest::binaryAdditionTest(std::string var1, std::string var2, std::string result)
 {
 	Math math;
@@ -95,6 +155,11 @@ void MathTest::binaryAdditionTest(std::string var1, std::string var2, std::strin
 	}
 }
 
+/**********************************************
+** Function: binarySubtractionTest()
+** Description: Takes two variables, and a result. Performs a math operation and checks answer for validity.
+** Params: string, string, string
+**********************************************/
 void MathTest::binarySubtractionTest(std::string var1, std::string var2, std::string result)
 {
 
@@ -113,6 +178,11 @@ void MathTest::binarySubtractionTest(std::string var1, std::string var2, std::st
 	}
 }
 
+/**********************************************
+** Function: binaryDivisionTest()
+** Description: Takes two variables, and a result. Performs a math operation and checks answer for validity.
+** Params: string, string, string
+**********************************************/
 void MathTest::binaryDivisionTest(std::string var1, std::string var2, std::string result)
 {
 
@@ -131,6 +201,11 @@ void MathTest::binaryDivisionTest(std::string var1, std::string var2, std::strin
 	}
 }
 
+/**********************************************
+** Function: hexAdditionTest()
+** Description: Takes two variables, and a result. Performs a math operation and checks answer for validity.
+** Params: string, string, string
+**********************************************/
 void MathTest::binaryMultiplicationTest(std::string var1, std::string var2, std::string result)
 {
 
@@ -149,8 +224,11 @@ void MathTest::binaryMultiplicationTest(std::string var1, std::string var2, std:
 	}
 }
 
-
-
+/**********************************************
+** Function: hexAdditionTest()
+** Description: Takes two variables, and a result. Performs a math operation and checks answer for validity.
+** Params: string, string, string
+**********************************************/
 void MathTest::hexAdditionTest(std::string var1, std::string var2, std::string result)
 {
 
@@ -169,6 +247,11 @@ void MathTest::hexAdditionTest(std::string var1, std::string var2, std::string r
 	}
 }
 
+/**********************************************
+** Function: hexMultiplicationTest()
+** Description: Takes two variables, and a result. Performs a math operation and checks answer for validity.
+** Params: string, string, string
+**********************************************/
 void MathTest::hexSubtractionTest(std::string var1, std::string var2, std::string result)
 {
 
@@ -187,6 +270,11 @@ void MathTest::hexSubtractionTest(std::string var1, std::string var2, std::strin
 	}
 }
 
+/**********************************************
+** Function: hexMultiplicationTest()
+** Description: Takes two variables, and a result. Performs a math operation and checks answer for validity.
+** Params: string, string, string
+**********************************************/
 void MathTest::hexMultiplicationTest(std::string var1, std::string var2, std::string result)
 {
 
@@ -205,6 +293,11 @@ void MathTest::hexMultiplicationTest(std::string var1, std::string var2, std::st
 	}
 }
 
+/**********************************************
+** Function: hexDivisionTest()
+** Description: Takes two variables, and a result. Performs a math operation and checks answer for validity.
+** Params: string, string, string
+**********************************************/
 void MathTest::hexDivisionTest(std::string var1, std::string var2, std::string result)
 {
 	Math math;
@@ -222,6 +315,11 @@ void MathTest::hexDivisionTest(std::string var1, std::string var2, std::string r
 	}
 }
 
+/**********************************************
+** Function: octalAdditionTest()
+** Description: Takes two variables, and a result. Performs a math operation and checks answer for validity.
+** Params: string, string, string
+**********************************************/
 void MathTest::octalAdditionTest(std::string var1, std::string var2, std::string result)
 {
 	Math math;
@@ -239,6 +337,11 @@ void MathTest::octalAdditionTest(std::string var1, std::string var2, std::string
 	}
 }
 
+/**********************************************
+** Function: octalSubtractionTest()
+** Description: Takes two variables, and a result. Performs a math operation and checks answer for validity.
+** Params: string, string, string
+**********************************************/
 void MathTest::octalSubtractionTest(std::string var1, std::string var2, std::string result)
 {
 	Math math;
@@ -256,6 +359,11 @@ void MathTest::octalSubtractionTest(std::string var1, std::string var2, std::str
 	}
 }
 
+/**********************************************
+** Function: octalMultiplicationTest()
+** Description: Takes two variables, and a result. Performs a math operation and checks answer for validity.
+** Params: string, string, string
+**********************************************/
 void MathTest::octalMultiplicationTest(std::string var1, std::string var2, std::string result)
 {
 	Math math;
@@ -273,6 +381,11 @@ void MathTest::octalMultiplicationTest(std::string var1, std::string var2, std::
 	}
 }
 
+/**********************************************
+** Function: octalDivisionTest()
+** Description: Takes two variables, and a result. Performs a math operation and checks answer for validity.
+** Params: string, string, string
+**********************************************/
 void MathTest::octalDivisionTest(std::string var1, std::string var2, std::string result)
 {
 	Math math;
