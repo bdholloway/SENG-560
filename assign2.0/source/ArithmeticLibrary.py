@@ -13,7 +13,7 @@ def mathit(type,x,y):
        result = x_float * y_float 
     elif type == 'DIV': 
        result = x_float / y_float  
-    
+    return str(result)
     print("Result: ",result)
   except ValueError:
     print("Invalid input(s)")

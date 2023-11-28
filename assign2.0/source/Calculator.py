@@ -1,5 +1,6 @@
 import sys
 import calc
+import re
 import ArithmeticLibrary
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
@@ -14,8 +15,10 @@ class CalcApp(QtWidgets.QMainWindow, calc.Ui_MainWindow):
         super(CalcApp, self).__init__(parent)
         self.setupUi(self)
         self.setupButtons()
-        
+    
+    #Set up signal and Slot for each of the Calculator Button  
     def setupButtons(self):
+        self.pushButton0.clicked.connect(lambda: self.setEditText(self.pushButton0, self.lineEdit))
         self.pushButton1.clicked.connect(lambda: self.setEditText(self.pushButton1, self.lineEdit))
         self.pushButton2.clicked.connect(lambda: self.setEditText(self.pushButton2, self.lineEdit))
         self.pushButton3.clicked.connect(lambda: self.setEditText(self.pushButton3, self.lineEdit))
@@ -33,33 +36,40 @@ class CalcApp(QtWidgets.QMainWindow, calc.Ui_MainWindow):
         self.pushButtonEq.clicked.connect(lambda: self.button_clicked(self.lineEdit))
         self.lineEdit.setFocus()
     
+    # Handle the line edit window of the calculator
     def setEditText(self, pushButton, lineEdit):
         num = pushButton.text()
         lineEdit.setText(str(self.lineEdit.text()+num))   
         
+    # Slot set up for the Equals button
+    # Will evaluate which operator we are using and call the Arithmetic Library Function    
     def button_clicked(self, ledit):
-        exp = ledit.text()
-        match exp[1]:
-            case "+":
-                res = ArithmeticLibrary.mathit("add", exp[0], exp[2])
-            case "-":
-                res = ArithmeticLibrary.mathit("sub", exp[0], exp[2])
-            case "*":
-                res = ArithmeticLibrary.mathit("mult", exp[0], exp[2])
-            case "/":
-                res = ArithmeticLibrary.mathit("div", exp[0], exp[2])
-            case _:
-                lineEdit.setText(str(self.lineEdit.text("ERROR")))
-        res = str(self.evaluateExp(exp))
+        line = ledit.text()
+        if '+' in line:
+            exp = line.split("+")
+            res = ArithmeticLibrary.mathit("add", exp[0], exp[1])
+        elif "-" in line:
+            exp = line.split("-")
+            res = ArithmeticLibrary.mathit("sub", exp[0], exp[1])
+        elif "*" in line:
+            exp = line.split("*")
+            res = ArithmeticLibrary.mathit("mult", exp[0], exp[1])
+        elif "/" in line:
+            exp = line.split("/")
+            res = ArithmeticLibrary.mathit("div", exp[0], exp[1])
+        else:
+            lineEdit.setText(str(self.lineEdit.text("ERROR")))
+            
         ledit.setText(res)
         
-    def evaluateExp(self, expression):
-        try:
-            result = eval(expression)
-        except (ValueError, SyntaxError, ArithmeticError):
-            result = "Error manual" + str(type(Exception))
-        return result
-    
+#    def evaluateExp(self, expression):
+#        try:
+#            result = eval(expression)
+#        except (ValueError, SyntaxError, ArithmeticError):
+#            result = "Error manual" + str(type(Exception))
+#        return result
+ 
+ # Clear the line edit   
     def clear(self, lineEdit):
         self.lineEdit.setText('') 
 
